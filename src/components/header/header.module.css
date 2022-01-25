@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    padding: 1em 0;
+}
+
+.logo{
+    width: 5em;
+    height: 5em;
+}
+
+.title{
+    font-size: 3em;
+}

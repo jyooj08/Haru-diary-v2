@@ -1,0 +1,23 @@
+.container{
+    width: 50%;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: var(--shadow);
+}
+
+.loginBtn{
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0.3em 0.8em;
+    margin: 1em 0;
+    background-color: transparent;
+    border: 2px solid var(--blue);
+    border-radius: var(--border-rad);
+}
+
+.loginBtn:hover{
+    background-color: var(--blue);
+}
