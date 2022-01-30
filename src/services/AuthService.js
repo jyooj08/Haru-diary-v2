@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 
 class AuthService{
     constructor(){
@@ -17,12 +17,17 @@ class AuthService{
           this.auth = getAuth();
     }
 
-    print(){
-        console.log('hello authservice!');
-    }
-
     login(){
         return signInWithPopup(this.auth, this.googleProvider);
+    }
+
+    autoLogin(moveToMain){
+        return onAuthStateChanged(this.auth, user => {
+            if(user){
+                console.log('autoLogin', user)
+                moveToMain(user.displayName, user.uid);
+            }
+        });
     }
 
     logout(){
