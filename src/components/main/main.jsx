@@ -1,13 +1,26 @@
 import React from 'react';
-import style from './main.module.css';
+import styles from './main.module.css';
 import store from '../../services/store';
+import Header from '../header/header';
+import Calendar from '../calendar/calendar';
+import Diary from '../diary/diary';
+
 
 const Main = (props) => {
     const user = store.getState().user;
+
+    if(user == null) throw new Error('No User Information');
     
     return (<>
-        <h1>{user.name}</h1>
-        <h1>{user.uid}</h1>
+        <Header />
+        <div className={styles.userInfo}>
+            <span className={styles.userName}>{user.name}님</span>
+            <button className={styles.logout}>Log Out</button>
+        </div>
+        <section className={styles.main}>
+            <Calendar />
+            <Diary />
+        </section>
     </>);
 };
 

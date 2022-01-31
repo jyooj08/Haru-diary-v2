@@ -7,6 +7,10 @@
   --shadow: 4px 4px 7px 0px #ACACAC;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Nanum Myeongjo', serif;

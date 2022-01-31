@@ -1,0 +1,7 @@
+.diary{
+    margin-left: 1rem;
+}
+
+.title{
+    border-bottom: 1px solid var(--blue);
+}
