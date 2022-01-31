@@ -22,9 +22,8 @@ class AuthService{
     }
 
     autoLogin(moveToMain){
-        return onAuthStateChanged(this.auth, user => {
+        onAuthStateChanged(this.auth, user => {
             if(user){
-                console.log('autoLogin', user)
                 moveToMain(user.displayName, user.uid);
             }
         });
@@ -32,6 +31,10 @@ class AuthService{
 
     logout(){
         return signOut(this.auth);
+    }
+
+    getUser(){
+        return this.auth.currentUser;
     }
 }
 

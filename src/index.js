@@ -6,12 +6,10 @@ import AuthService from './services/AuthService';
 import { Provider } from 'react-redux';
 import store from './services/store';
 
-const authService = new AuthService();
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App authService={authService} />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

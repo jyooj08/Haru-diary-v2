@@ -1,13 +1,21 @@
 import { createStore } from "redux";
+import AuthService from "./AuthService";
 
+const authService = new AuthService();
 const initialState = {
+    auth : authService,
     user: null
 }
 
 function reducer(state = initialState, action){
+    let newState = state;
     switch(action.type){
         case 'LOGIN':
-            return {user: action.data}
+            newState.user = action.data;
+            return newState;
+        case 'LOGOUT':
+            newState.user = null;
+            return newState;
         default:
             return state;
     }

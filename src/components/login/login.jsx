@@ -4,8 +4,9 @@ import Header from '../header/header';
 import styles from './login.module.css';
 import store from '../../services/store';
 
-const Login = ({authService}) => {
+const Login = () => {
     const navi = useNavigate();
+    const authService = store.getState().auth;
 
     const moveToMain = (userName, userId) => {
         store.dispatch({
