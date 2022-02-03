@@ -1,0 +1,14 @@
+.calendar {
+  text-align: center;
+}
+
+.week {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8em;
+}
+
+.date {
+  width: 2em;
+  cursor: pointer;
+}
