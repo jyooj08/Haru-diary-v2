@@ -2,9 +2,15 @@ import { createStore } from "redux";
 import AuthService from "./AuthService";
 
 const authService = new AuthService();
+const today = new Date();
 const initialState = {
     auth : authService,
-    user: null
+    user: null,
+    date: {
+        y: today.getFullYear(),
+        m: today.getMonth() + 1,
+        d: today.getDate()
+    }
 }
 
 function reducer(state = initialState, action){
@@ -15,6 +21,14 @@ function reducer(state = initialState, action){
             return newState;
         case 'LOGOUT':
             newState.user = null;
+            return newState;
+        case 'MOVE_NEXT_MONTH':
+            newState.date.m++;
+            if(newState.date.m>12){ newState.date.y++; newState.date.m=1; }
+            return newState;
+        case 'MOVE_PAST_MONTH':
+            newState.date.m--;
+            if(newState.date.m<1){ newState.date.y--; newState.date.m=12;}
             return newState;
         default:
             return state;
