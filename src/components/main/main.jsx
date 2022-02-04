@@ -16,20 +16,9 @@ const Main = (props) => {
     useEffect(()=>{
         if(!user) navi('/');
     }, [])
-    
-    const onLogout = () => {
-        store.dispatch({
-            type: 'LOGOUT',
-        });
-        navi('/');
-    }
 
     return (<>
         <Header />
-        <div className={styles.userInfo}>
-            <span className={styles.userName}>{user && user.name}님</span>
-            <button className={styles.logout} onClick={onLogout}>Log Out</button>
-        </div>
         <section className={styles.main}>
             <Calendar />
             <Diary />

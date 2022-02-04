@@ -1,16 +1,36 @@
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--blue);
-    padding: 1em 0;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue);
+  padding: 1em 0;
 }
 
-.logo{
-    width: 5em;
-    height: 5em;
+.logo {
+  width: 5em;
+  height: 5em;
 }
 
-.title{
-    font-size: 3em;
+.title {
+  font-size: 3em;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.logout {
+  background-color: transparent;
+  padding: 0.2em 0.5em;
+  margin-left: 0.5em;
+  border: 1px solid var(--blue);
+  border-radius: 0.5em;
+}
+
+.logout:hover {
+  background-color: var(--blue);
+  color: white;
 }
