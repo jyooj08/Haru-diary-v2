@@ -10,6 +10,11 @@ const initialState = {
         y: today.getFullYear(),
         m: today.getMonth() + 1,
         d: today.getDate()
+    },
+    diary_date: {
+        y: today.getFullYear(),
+        m: today.getMonth() + 1,
+        d: today.getDate()
     }
 }
 
@@ -30,6 +35,9 @@ function reducer(state = initialState, action){
             newState.date.m--;
             if(newState.date.m<1){ newState.date.y--; newState.date.m=12;}
             return newState;
+        case 'SELECT_DIARY_DATE':
+            console.log({...newState, diary_date: action.data});
+            return {...newState, diary_date: action.data}
         default:
             return state;
     }
