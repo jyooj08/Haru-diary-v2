@@ -8,8 +8,8 @@ const Calendar = (props) => {
     let lastDate = new Date(date.y, date.m, 0).getDate();
     let day = new Date(date.y, date.m-1, 1).getDay();
     let cal = [[]], w = 0;
+    
     for(let i=0;i<day;i++) cal[0].push(0);
-
     for(let i=1;i<=lastDate;i++){
         if(day == 7){
             day = 0;
@@ -19,7 +19,6 @@ const Calendar = (props) => {
         cal[w].push(i);
         day++;
     }
-
     for(let i=day;i<7;i++) cal[w].push(0);
 
     const calRef = useRef();
