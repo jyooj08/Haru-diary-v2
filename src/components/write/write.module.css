@@ -1,0 +1,43 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.write {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 80%;
+  margin: auto;
+  padding: 1em 0;
+}
+
+.title,
+.content {
+  outline: none;
+  border: 2px solid var(--blue);
+  border-radius: 0.5em;
+  font-size: 1rem;
+  padding: 0.8em;
+}
+
+.content {
+  flex: 1 1 auto;
+  margin: 1em 0;
+}
+
+.saveBtn {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  padding: 0.5em 0.8em;
+  background-color: transparent;
+  border: 2px solid var(--blue);
+  border-radius: 0.5em;
+}
+
+.saveBtn:hover {
+  background-color: var(--blue);
+  color: white;
+}

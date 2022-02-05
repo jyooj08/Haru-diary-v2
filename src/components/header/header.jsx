@@ -3,7 +3,7 @@ import styles from './header.module.css';
 import store from '../../services/store';
 import { useNavigate } from 'react-router-dom';
 
-const Header = (props) => {
+const Header = ({login}) => {
     let user = store.getState().user;
     const navi = useNavigate();
 
@@ -20,7 +20,7 @@ const Header = (props) => {
             <h1 className={styles.title}>하루일기</h1>
         </div>
         { 
-            user && <div className={styles.userInfo}>
+            user && !login && <div className={styles.userInfo}>
                 <span className={styles.userName}>{user && user.name}님</span>
                 <button className={styles.logout} onClick={onLogout}>Log Out</button>
             </div>

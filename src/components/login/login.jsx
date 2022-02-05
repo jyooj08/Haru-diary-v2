@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import styles from './login.module.css';
@@ -29,7 +29,7 @@ const Login = () => {
     authService.autoLogin(moveToMain);
 
     return (<div className={styles.container}>
-        <Header />
+        <Header login={true} />
         <button className={styles.loginBtn} onClick={onLogin}>Google Login</button>
     </div>)
 }

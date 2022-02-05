@@ -25,7 +25,8 @@
 }
 
 .date {
-  width: 2em;
+  width: 1em;
+  margin: 0 0.5em;
   cursor: pointer;
 }
 
