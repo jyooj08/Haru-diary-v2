@@ -2,12 +2,14 @@
 import styles from './calendar.module.css';
 import store from '../../services/store';
 import React, { useRef, useState } from 'react';
+import Database from '../../services/database';
 
 const Calendar = (props) => {
     let [date, setDate] = useState(store.getState().date);
     let lastDate = new Date(date.y, date.m, 0).getDate();
     let day = new Date(date.y, date.m-1, 1).getDay();
     let cal = [[]], w = 0;
+    const db = new Database();
     
     for(let i=0;i<day;i++) cal[0].push(0);
     for(let i=1;i<=lastDate;i++){
@@ -50,6 +52,13 @@ const Calendar = (props) => {
             store.dispatch({
                 type: 'SELECT_DIARY_DATE',
                 data: { y, m, d }
+            })
+            db.getDiary()
+            .then(val => {
+                store.dispatch({
+                    type: 'SET_DIARY',
+                    data: val
+                });
             })
         }
     }
