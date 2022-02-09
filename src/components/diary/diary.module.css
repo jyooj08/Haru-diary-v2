@@ -27,3 +27,28 @@
   background-color: var(--blue);
   color: white;
 }
+
+
+.loading{
+  margin-top: 4em;
+}
+.spinner{
+  margin-top: 5rem;
+  font-size: 2em;
+  width: 1.5em;
+  height: 1.5em;
+  margin: auto;
+  border-radius: 50%;
+  border: 3px solid whitesmoke;
+  border-top: 3px solid var(--blue);
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin{
+  0% {
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

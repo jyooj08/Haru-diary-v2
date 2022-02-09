@@ -8,6 +8,7 @@ const Diary = (props) => {
     const [diary, setDiary] = useState(store.getState().diary);
     const navi = useNavigate();
 
+    
     store.subscribe(() => {
         setDate({...store.getState().diary_date});
         setDiary(store.getState().diary);
@@ -18,14 +19,15 @@ const Diary = (props) => {
     }
 
     return (<div className={styles.diary}>
+        { props.loading && <div className={styles.loading}><div className={styles.spinner}></div></div> }
         {
-            diary && <div className={styles.content}>
+            !props.loading && diary && <div className={styles.content}>
                 <h1 className={styles.title}>{diary.title} {date.y}-{date.m}-{date.d}</h1>
                 <span className={styles.content}>{diary.content}</span>
             </div>
         }
         {
-            !diary && <div className={styles.noContent}>
+            !props.loading && !diary && <div className={styles.noContent}>
                 <span>작성된 일기가 없습니다.</span>
                 <button className={styles.goToWrite} onClick={goToWrite}>일기 작성하기</button>
             </div>
