@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './diary.module.css';
 import store from '../../services/store';
 import { useNavigate } from 'react-router-dom';
+import Database from '../../services/database';
 
 const Diary = (props) => {
     const [date, setDate] = useState(store.getState().diary_date);
     const [diary, setDiary] = useState(store.getState().diary);
     const navi = useNavigate();
-
+    const db = new Database();
     
     store.subscribe(() => {
         setDate({...store.getState().diary_date});
@@ -17,6 +18,19 @@ const Diary = (props) => {
     const goToWrite = () => {
         navi('/write');
     }
+
+    useEffect(()=>{
+        props.setLoading(true);
+        store.getState().user && db.getDiary()
+        .then(val => {
+            store.dispatch({
+                type: 'SET_DIARY',
+                data: val
+            });
+            props.setLoading(false);
+        })
+    }, [])
+
 
     return (<div className={styles.diary}>
         { props.loading && <div className={styles.loading}><div className={styles.spinner}></div></div> }

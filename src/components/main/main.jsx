@@ -30,7 +30,7 @@ const Main = (props) => {
         <Header />
         <section className={styles.main}>
             <Calendar loading={loading} setLoading={setLoading} />
-            <Diary loading={loading} />
+            <Diary loading={loading} setLoading={setLoading} />
         </section>
     </>);
 };
