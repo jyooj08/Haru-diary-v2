@@ -22,7 +22,7 @@ const Header = ({login}) => {
         { 
             user && !login && <div className={styles.userInfo}>
                 <span className={styles.userName}>{user && user.name}님</span>
-                <button className={styles.logout} onClick={onLogout}>Log Out</button>
+                <button className='haruBtn' onClick={onLogout}>Log Out</button>
             </div>
         }
     </>);

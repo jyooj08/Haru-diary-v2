@@ -36,7 +36,10 @@ const Diary = (props) => {
         { props.loading && <div className={styles.loading}><div className={styles.spinner}></div></div> }
         {
             !props.loading && diary && <div className={styles.content}>
-                <h1 className={styles.title}>{diary.title} {date.y}-{date.m}-{date.d}</h1>
+                <h3>{date.y}-{date.m}-{date.d}</h3>
+                <button className={`haruBtn ${styles.btn}`}>삭제</button>
+                <button className={`haruBtn ${styles.btn}`}>수정</button>
+                <h2 className={styles.title}>{diary.title}</h2>
                 <span className={styles.content}>{diary.content}</span>
             </div>
         }

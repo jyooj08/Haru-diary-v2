@@ -22,3 +22,15 @@ button{
   cursor: pointer;
   font-family: 'Nanum Myeongjo', serif;
 }
+.haruBtn {
+  background-color: transparent;
+  padding: 0.2em 0.5em;
+  margin-left: 0.5em;
+  border: 1.5px solid var(--blue);
+  border-radius: 0.5em;
+}
+
+.haruBtn:hover {
+  background-color: var(--blue);
+  color: white;
+}

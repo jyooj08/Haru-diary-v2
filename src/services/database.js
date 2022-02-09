@@ -16,13 +16,12 @@ class Database {
 
           this.app = initializeApp(this.firebaseConfig);
           this.db = getDatabase(this.app);
-          this.dbref = ref(this.db);
     }
 
     getDiary() {
         const date = store.getState().diary_date;
         const uid = store.getState().user.uid;
-        return get(child(this.dbref, `${uid}/${date.y}-${date.m}-${date.d}`)).then(snapshot => {
+        return get(ref(this.db, `${uid}/${date.y}-${date.m}-${date.d}`)).then(snapshot => {
             if(snapshot.exists()){
                 return snapshot.val();
             }else return null;
