@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { child, get, getDatabase, ref } from "firebase/database";
+import { child, get, getDatabase, ref, set } from "firebase/database";
 import store from './store';
 
 class Database {
@@ -18,14 +18,23 @@ class Database {
           this.db = getDatabase(this.app);
     }
 
-    getDiary() {
+    async getDiary() {
         const date = store.getState().diary_date;
         const uid = store.getState().user.uid;
-        return get(ref(this.db, `${uid}/${date.y}-${date.m}-${date.d}`)).then(snapshot => {
-            if(snapshot.exists()){
-                return snapshot.val();
-            }else return null;
-        })
+        const snapshot = await get(ref(this.db, `${uid}/${date.y}-${date.m}-${date.d}`));
+        if (snapshot.exists()) {
+            return snapshot.val();
+        } else
+            return null;
+    }
+
+    setDiary(title, content){
+        const date = store.getState().diary_date;
+        const uid = store.getState().user.uid;
+        return set(ref(this.db, `${uid}/${date.y}-${date.m}-${date.d}`), {
+            title: title,
+            content: content
+        });
     }
 }
 
