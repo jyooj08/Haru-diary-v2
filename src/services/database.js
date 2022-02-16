@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { child, get, getDatabase, ref, set } from "firebase/database";
+import { child, get, getDatabase, ref, remove, set } from "firebase/database";
 import store from './store';
 
 class Database {
@@ -35,6 +35,12 @@ class Database {
             title: title,
             content: content
         });
+    }
+
+    deleteDiary(){
+        const date = store.getState().diary_date;
+        const uid = store.getState().user.uid;
+        return remove(ref(this.db, `${uid}/${date.y}-${date.m}-${date.d}`));
     }
 }
 

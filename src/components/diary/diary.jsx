@@ -19,6 +19,18 @@ const Diary = (props) => {
         navi('/write');
     }
 
+    const onDeleteClick = () => {
+        props.setLoading(true);
+        db.deleteDiary()
+        .then(() => {
+            store.dispatch({
+                type: 'SET_DIARY',
+                data: null
+            });
+            props.setLoading(false);
+        })
+    }
+
     useEffect(()=>{
         props.setLoading(true);
         store.getState().user && db.getDiary()
@@ -33,11 +45,11 @@ const Diary = (props) => {
 
 
     return (<div className={styles.diary}>
+        <h3>{date.y}-{date.m}-{date.d}</h3>
         { props.loading && <div className={styles.loading}><div className={styles.spinner}></div></div> }
         {
             !props.loading && diary && <div className={styles.content}>
-                <h3>{date.y}-{date.m}-{date.d}</h3>
-                <button className={`haruBtn ${styles.btn}`}>삭제</button>
+                <button onClick={onDeleteClick} className={`haruBtn ${styles.btn}`}>삭제</button>
                 <button className={`haruBtn ${styles.btn}`}>수정</button>
                 <h2 className={styles.title}>{diary.title}</h2>
                 <span className={styles.content}>{diary.content}</span>

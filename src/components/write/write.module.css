@@ -27,17 +27,6 @@
   margin: 1em 0;
 }
 
-.saveBtn {
-  display: block;
-  width: fit-content;
-  margin: auto;
-  padding: 0.5em 0.8em;
-  background-color: transparent;
-  border: 2px solid var(--blue);
-  border-radius: 0.5em;
-}
-
-.saveBtn:hover {
-  background-color: var(--blue);
-  color: white;
+.buttons{
+  text-align: center;
 }
