@@ -26,14 +26,18 @@ const Write = (props) => {
         })
     }
 
-    /*useEffect(() => {
-        return ((event) => {
-            console.log(event);
-            if(!window.confirm('unmounted?')){
-                window.history.forward();
+    useEffect(() => {
+        db.getDiary()
+        .then(val => {
+            if(val){
+                console.log(val);
+                titleRef.current.value = val.title;
+                contentRef.current.value = val.content;
+            } else{
+                console.log('새 일기');
             }
-        })
-    })*/
+        });
+    })
 
     return (<div className={styles.window}>
         <Header />

@@ -31,6 +31,10 @@ const Diary = (props) => {
         })
     }
 
+    const onUpdateClick = () => {
+        navi('/write');
+    }
+
     useEffect(()=>{
         props.setLoading(true);
         store.getState().user && db.getDiary()
@@ -50,7 +54,7 @@ const Diary = (props) => {
         {
             !props.loading && diary && <div className={styles.content}>
                 <button onClick={onDeleteClick} className={`haruBtn ${styles.btn}`}>삭제</button>
-                <button className={`haruBtn ${styles.btn}`}>수정</button>
+                <button onClick={onUpdateClick} className={`haruBtn ${styles.btn}`}>수정</button>
                 <h2 className={styles.title}>{diary.title}</h2>
                 <span className={styles.content}>{diary.content}</span>
             </div>
