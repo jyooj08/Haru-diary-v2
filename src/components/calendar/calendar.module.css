@@ -25,11 +25,13 @@
 }
 
 .date {
-  width: 1em;
-  margin: 0 0.5em;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
   cursor: pointer;
 }
 
-.blank {
-  width: 2em;
+.selected {
+  background-color: var(--blue);
+  border-radius: 50%;
 }

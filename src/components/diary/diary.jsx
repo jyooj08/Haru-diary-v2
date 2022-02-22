@@ -49,7 +49,7 @@ const Diary = (props) => {
 
 
     return (<div className={styles.diary}>
-        <h3>{date.y}-{date.m}-{date.d}</h3>
+        <h3>{date.y}년 {date.m}월 {date.d}일</h3>
         { props.loading && <div className={styles.loading}><div className={styles.spinner}></div></div> }
         {
             !props.loading && diary && <div className={styles.content}>
