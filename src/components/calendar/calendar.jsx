@@ -1,6 +1,6 @@
 import styles from "./calendar.module.css";
 import store from "../../services/store";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Database from "../../services/database";
 
 const Calendar = (props) => {
@@ -23,6 +23,24 @@ const Calendar = (props) => {
   }
   for (let i = day; i < 7; i++) cal[w].push(0);
 
+  useEffect(() => {
+    db.getDiaryInMonth().then((result) => {
+      let date = store.getState().date;
+      result = Object.keys(result).filter((item) =>
+        item.startsWith(`${date.y}-${date.m}`)
+      );
+      for (let week of calRef.current.children) {
+        for (let d of week.children) {
+          if (Number(d.innerText) === date.d) d.classList.add(styles.selected);
+          else d.classList.remove(styles.selected);
+          if (result.includes(`${date.y}-${date.m}-${d.innerText}`)) {
+            d.classList.add(styles.hasDiary);
+          } else d.classList.remove(styles.hasDiary);
+        }
+      }
+    });
+  }, []);
+
   const calRef = useRef();
 
   const moveNext = () => {
@@ -30,6 +48,20 @@ const Calendar = (props) => {
       type: "MOVE_NEXT_MONTH",
     });
     setDate({ ...store.getState().date });
+    db.getDiaryInMonth().then((result) => {
+      let date = store.getState().date;
+      result = Object.keys(result).filter((item) =>
+        item.startsWith(`${date.y}-${date.m}`)
+      );
+      for (let week of calRef.current.children) {
+        for (let d of week.children) {
+          d.classList.remove(styles.selected);
+          if (result.includes(`${date.y}-${date.m}-${d.innerText}`)) {
+            d.classList.add(styles.hasDiary);
+          } else d.classList.remove(styles.hasDiary);
+        }
+      }
+    });
   };
 
   const movePast = () => {
@@ -37,6 +69,20 @@ const Calendar = (props) => {
       type: "MOVE_PAST_MONTH",
     });
     setDate({ ...store.getState().date });
+    db.getDiaryInMonth().then((result) => {
+      let date = store.getState().date;
+      result = Object.keys(result).filter((item) =>
+        item.startsWith(`${date.y}-${date.m}`)
+      );
+      for (let week of calRef.current.children) {
+        for (let d of week.children) {
+          d.classList.remove(styles.selected);
+          if (result.includes(`${date.y}-${date.m}-${d.innerText}`)) {
+            d.classList.add(styles.hasDiary);
+          } else d.classList.remove(styles.hasDiary);
+        }
+      }
+    });
   };
 
   // store.subscribe(() => {

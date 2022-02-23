@@ -35,3 +35,8 @@
   background-color: var(--blue);
   border-radius: 50%;
 }
+
+.hasDiary {
+  border: 1.5px solid var(--blue);
+  border-radius: 50%;
+}
