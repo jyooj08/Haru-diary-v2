@@ -13,7 +13,7 @@ const Calendar = (props) => {
 
   for (let i = 0; i < day; i++) cal[0].push(0);
   for (let i = 1; i <= lastDate; i++) {
-    if (day == 7) {
+    if (day === 7) {
       day = 0;
       w++;
       cal.push([]);
@@ -98,7 +98,6 @@ const Calendar = (props) => {
       let d = Number(event.target.innerText);
       let y = store.getState().date.y;
       let m = store.getState().date.m;
-      console.log("select", y, m, d);
       for (let week of calRef.current.children) {
         for (let date of week.children) {
           if (Number(date.innerText) === d && date.innerText !== "")
