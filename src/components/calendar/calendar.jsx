@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Database from "../../services/database";
 
 const Calendar = (props) => {
-  let [date, setDate] = useState(store.getState().date);
+  let [date, setDate] = useState(store.getState().diary_date);
   let lastDate = new Date(date.y, date.m, 0).getDate();
   let day = new Date(date.y, date.m - 1, 1).getDay();
   let cal = [[]],
@@ -25,7 +25,7 @@ const Calendar = (props) => {
 
   useEffect(() => {
     db.getDiaryInMonth().then((result) => {
-      let date = store.getState().date;
+      // let date = store.getState().date;
       result = Object.keys(result).filter((item) =>
         item.startsWith(`${date.y}-${date.m}`)
       );
@@ -96,8 +96,8 @@ const Calendar = (props) => {
   const onCalendarClick = (event) => {
     if (event.target.className.includes("date")) {
       let d = Number(event.target.innerText);
-      let y = store.getState().date.y;
-      let m = store.getState().date.m;
+      let y = date.y;
+      let m = date.m;
       for (let week of calRef.current.children) {
         for (let date of week.children) {
           if (Number(date.innerText) === d && date.innerText !== "")
