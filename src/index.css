@@ -1,27 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
-@import url('https://use.fontawesome.com/releases/v5.15.4/css/all.css');
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap");
+@import url("https://use.fontawesome.com/releases/v5.15.4/css/all.css");
 
-:root{
+:root {
   --blue: #c3cfdb;
   --border-rad: 0.5em;
-  --shadow: 4px 4px 7px 0px #ACACAC;
+  --shadow: 4px 4px 7px 0px #acacac;
 }
 
-*{
+* {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: "Nanum Myeongjo", serif;
 }
 
-button{
+button {
   border: none;
   outline: none;
   cursor: pointer;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: "Nanum Myeongjo", serif;
 }
+
+pre {
+  font-family: "Nanum Myeongjo", serif;
+}
+
 .haruBtn {
   background-color: transparent;
   padding: 0.2em 0.5em;

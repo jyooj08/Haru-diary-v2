@@ -65,7 +65,7 @@ const Diary = (props) => {
             수정
           </button>
           <h2 className={styles.title}>{diary.title}</h2>
-          <span className={styles.content}>{diary.content}</span>
+          <pre className={styles.content}>{diary.content}</pre>
         </div>
       )}
       {!props.loading && !diary && (
