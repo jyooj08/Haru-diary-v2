@@ -3,6 +3,8 @@ import store from "../../services/store";
 import React, { useEffect, useRef, useState } from "react";
 import Database from "../../services/database";
 
+export let calRef;
+
 const Calendar = (props) => {
   let [date, setDate] = useState(store.getState().diary_date);
   let lastDate = new Date(date.y, date.m, 0).getDate();
@@ -10,6 +12,7 @@ const Calendar = (props) => {
   let cal = [[]],
     w = 0;
   const db = new Database();
+  calRef = useRef();
 
   for (let i = 0; i < day; i++) cal[0].push(0);
   for (let i = 1; i <= lastDate; i++) {
@@ -41,27 +44,12 @@ const Calendar = (props) => {
     });
   }, []);
 
-  const calRef = useRef();
-
   const moveNext = () => {
     store.dispatch({
       type: "MOVE_NEXT_MONTH",
     });
     setDate({ ...store.getState().date });
-    db.getDiaryInMonth().then((result) => {
-      let date = store.getState().date;
-      result = Object.keys(result).filter((item) =>
-        item.startsWith(`${date.y}-${date.m}`)
-      );
-      for (let week of calRef.current.children) {
-        for (let d of week.children) {
-          d.classList.remove(styles.selected);
-          if (result.includes(`${date.y}-${date.m}-${d.innerText}`)) {
-            d.classList.add(styles.hasDiary);
-          } else d.classList.remove(styles.hasDiary);
-        }
-      }
-    });
+    props.setCalendarMark();
   };
 
   const movePast = () => {
@@ -69,25 +57,12 @@ const Calendar = (props) => {
       type: "MOVE_PAST_MONTH",
     });
     setDate({ ...store.getState().date });
-    db.getDiaryInMonth().then((result) => {
-      let date = store.getState().date;
-      result = Object.keys(result).filter((item) =>
-        item.startsWith(`${date.y}-${date.m}`)
-      );
-      for (let week of calRef.current.children) {
-        for (let d of week.children) {
-          d.classList.remove(styles.selected);
-          if (result.includes(`${date.y}-${date.m}-${d.innerText}`)) {
-            d.classList.add(styles.hasDiary);
-          } else d.classList.remove(styles.hasDiary);
-        }
-      }
-    });
+    props.setCalendarMark();
   };
 
-  // store.subscribe(() => {
-  //     setDate({...store.getState().date});
-  // })
+  store.subscribe(() => {
+    setDate({ ...store.getState().diary_date });
+  });
 
   const setLoading = (val) => {
     props.setLoading(val);

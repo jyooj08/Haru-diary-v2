@@ -25,6 +25,8 @@ button {
 
 pre {
   font-family: "Nanum Myeongjo", serif;
+  white-space: pre-wrap;
+  line-height: 1.2em;
 }
 
 .haruBtn {

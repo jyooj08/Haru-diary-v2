@@ -1,17 +1,27 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../header/header";
 import styles from "./write.module.css";
 import Database from "../../services/database";
 import { useNavigate } from "react-router-dom";
 
 const Write = (props) => {
+  let submit = false;
   const titleRef = useRef();
   const contentRef = useRef();
   const db = new Database();
   const navi = useNavigate();
 
   const onSubmitClick = () => {
+    if (titleRef.current.value === "") {
+      alert("Error: 제목을 입력해 주세요.");
+      return;
+    }
+    if (contentRef.current.value === "") {
+      alert("Error: 내용을 입력해 주세요.");
+      return;
+    }
     db.setDiary(titleRef.current.value, contentRef.current.value).then(() => {
+      submit = true;
       navi("/main");
     });
   };

@@ -26,6 +26,7 @@ const Diary = (props) => {
         type: "SET_DIARY",
         data: null,
       });
+      props.setCalendarMark();
       props.setLoading(false);
     });
   };
